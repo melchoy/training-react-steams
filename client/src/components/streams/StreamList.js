@@ -3,7 +3,7 @@ import React from 'react'
 export default function StramList() {
   return (
     <div>
-      StreamList
+      Stream List
     </div>
   )
 }
