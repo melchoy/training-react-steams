@@ -1,9 +1,17 @@
-import React from 'react'
+import React from 'react';
+import {Field, reduxForm } from 'redux-form';
 
-export default function StreamCreate() {
-  return (
-    <div>
-      Stream Create
-    </div>
-  )
+class StreamCreate extends React.Component {
+  render() {  
+    return(
+      <form>
+        <Field name="title" />
+        <Field name="description" /> 
+      </form>
+    );
+  }
 }
+
+export default reduxForm({
+  form: 'streamCreate'
+})(StreamCreate);
