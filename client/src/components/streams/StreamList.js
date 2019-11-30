@@ -7,17 +7,33 @@ class StramList extends React.Component {
     this.props.fetchStreams();
   }
 
+  renderActions(stream) {
+    if(stream.userId === this.props.currentUserId) {
+      return(
+        <div className="right floated content">
+          <button className="ui button primary">
+            Edit
+          </button>
+          <button className="ui button negative">
+            Delete
+          </button>
+        </div>
+      );
+    }
+  }
+
   renderList() {
     return this.props.streams.map(stream => {
       return(
         <div className="item" key={stream.id}>
+          {this.renderActions(stream)}
           <i className="large middle aligned icon camera" />
           <div className="content">
             {stream.title}            
             <div className="description">
               {stream.description}
-            </div>
-          </div>
+            </div>            
+          </div>          
         </div>
       );
     });
@@ -36,7 +52,10 @@ class StramList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { streams: Object.values(state.streams)  };
+  return { 
+    streams: Object.values(state.streams),
+    currentUserId: state.auth.userId  
+  };
 }
 
 export default connect(
